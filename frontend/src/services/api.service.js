@@ -4,9 +4,11 @@ const api = axios.create({
     baseURL: 'http://localhost:8080/api'
 });
 
-export const getAllItems = async () => {
+export const getAllItems = async (filters = {}) => {
     try {
-        const response = await api.get('/tasks');
+        const response = await api.get('/tasks', {
+            params: filters
+        });
         return response.data;
     } catch (error) {
         console.error('Error fetching items:', error);
